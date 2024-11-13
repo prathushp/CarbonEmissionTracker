@@ -1,0 +1,68 @@
+/* Reset default margin and padding */
+:root {
+    margin: 0;
+    padding: 0;
+}
+
+/* Styling for the root element */
+#root {
+    width: 100%; /* Ensure full width */
+    margin: 0;
+    padding: 0;
+    text-align: center; /* Center-align content */
+}
+
+/* Logo styles */
+.logo {
+    height: 6em; /* Set logo height */
+    padding: 1.5em; /* Add padding */
+    will-change: filter; /* Optimize for animation */
+    transition: filter 300ms; /* Smooth transition */
+}
+.logo:hover {
+    filter: drop-shadow(0 0 2em #646cffaa); /* Add drop shadow on hover */
+}
+.logo.react:hover {
+    filter: drop-shadow(0 0 2em #61dafbaa); /* Add drop shadow for React logo */
+}
+
+/* Animation for logo spin */
+@keyframes logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Apply logo spin animation if prefers-reduced-motion is not set */
+@media (prefers-reduced-motion: no-preference) {
+    a:nth-of-type(2) .logo {
+        animation: logo-spin infinite 20s linear; /* Apply logo spin animation */
+    }
+}
+
+/* Card styles */
+.card {
+    padding: 2em; /* Add padding */
+}
+
+/* Styling for 'read the docs' text */
+.read-the-docs {
+    color: #888; /* Set text color */
+}
+
+/* Ensure content stretches to fill available space */
+#root {
+    display: flex; /* Use flexbox */
+    flex-direction: column; /* Set column layout */
+}
+.main-content {
+    flex: 1; /* Allow main content to stretch */
+}
+
+/* Hover effect for event cards */
+.event-card:hover {
+    background-color: lightgray; /* Change background color on hover */
+}

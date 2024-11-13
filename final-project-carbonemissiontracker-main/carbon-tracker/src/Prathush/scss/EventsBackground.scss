@@ -1,0 +1,104 @@
+/* Styling for the events background */
+.events-background {
+  .events-content {
+    background-size: cover; /* Ensure background covers the container */
+    background-color: #f0f0f0; /* Background color */
+    padding: 20px; /* Padding for content */
+    margin-top: 100px; /* Top margin */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition effects */
+
+    /* Hover effect */
+    &:hover {
+      transform: translateY(-5px) rotate(2deg); /* Move up and rotate slightly */
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increase box shadow */
+    }
+
+    h2 {
+      font-size: 36px; /* Increased font size */
+      margin-bottom: 10px; /* Bottom margin */
+      color: #333; /* Text color */
+      font-weight: bold; /* Bold font weight */
+      animation: rainbowText 5s linear infinite alternate; /* Rainbow text animation */
+    }
+
+    p {
+      font-size: 16px; /* Font size */
+      margin-bottom: 20px; /* Bottom margin */
+      color: #666; /* Text color */
+      animation: bounceIn 1s ease; /* Bounce-in animation */
+    }
+
+    /* Styling for the signup button */
+    .signup-button {
+      margin: 0 auto;
+      margin-bottom: 10px; /* Bottom margin */
+      transition: background-color 0.3s ease; /* Transition effect for background color */
+      animation: pulse 1s infinite alternate; /* Button pulse animation */
+
+      /* Hover effect */
+      &:hover {
+        background-color: #1976d2; /* Background color on hover */
+      }
+    }
+  }
+}
+
+/* Additional styling for events background */
+.events-background {
+  padding-bottom: 50px; /* Additional padding at the bottom */
+}
+
+/* Keyframes for rainbow text animation */
+@keyframes rainbowText {
+  0% {
+    color: #ff0000; /* Red */
+  }
+  20% {
+    color: #ffa500; /* Orange */
+  }
+  40% {
+    color: #ffff00; /* Yellow */
+  }
+  60% {
+    color: #00ff00; /* Green */
+  }
+  80% {
+    color: #0000ff; /* Blue */
+  }
+  100% {
+    color: #800080; /* Purple */
+  }
+}
+
+/* Keyframes for bounce-in animation */
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Keyframes for pulse animation */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+.events-content.center-items {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center; /* To make text center aligned */
+  height: 100%; /* Make sure to give it a height */
+}

@@ -1,0 +1,79 @@
+/* Styling for the event card component */
+.event-card {
+  position: relative;
+  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.5s ease;
+  /* Animation for swaying effect */
+  animation: swayCard 6s infinite alternate;
+  color: #fff; /* White text color for card content */
+}
+
+/* Keyframes for the swaying animation */
+@keyframes swayCard {
+  0% {
+    transform: rotate(-2deg); /* Initial rotation to the left */
+  }
+  50% {
+    transform: rotate(2deg); /* Rotation to the right */
+  }
+  100% {
+    transform: rotate(-2deg); /* Return to initial rotation */
+  }
+}
+
+/* Styling for the container of event list */
+.event-list-container {
+  background-color: #423a3a; /* Dark grey background color */
+  padding: 20px; /* Padding for better readability */
+}
+
+/* Styling for the heading of events section */
+.events-heading {
+  color: #fff; /* White text color */
+  margin-bottom: 20px; /* Margin below the heading */
+}
+
+/* Styling for the search input field */
+.search-input {
+  .MuiInputBase-input {
+    color: #fff; /* White text color for input text */
+  }
+
+  .MuiInputLabel-root {
+    color: black; /* Black text color for label text */
+  }
+
+  .MuiOutlinedInput-notchedOutline {
+    border-color: white !important; /* White border color for the input outline */
+  }
+
+  .MuiSvgIcon-root {
+    fill: red; /* Red color for the search icon */
+  }
+
+  /* Customization for legend label */
+  .PrivateNotchedOutline-legendLabelled-3 {
+    text-emphasis-color: yellow !important; /* Yellow text color for legend label */
+    color: #333; /* Color for other text content */
+  }
+}
+
+/* Styling for the event card content */
+.event-card__content {
+  flex-grow: 1; /* Allow content to grow to fill remaining space */
+  padding: 16px; /* Padding for content */
+}
+
+/* Styling for paragraphs within event card content */
+.event-card__content p {
+  margin: 0; /* Remove default margin */
+}
+
+/* Styling for the text when there are no events available */
+.no-events-text {
+  color: #fff; /* White text color */
+}
+
+/* Styling for the focused form label */
+.MuiFormLabel-root.Mui-focused {
+  color: #F57F17; /* Orange color for focused label */
+}

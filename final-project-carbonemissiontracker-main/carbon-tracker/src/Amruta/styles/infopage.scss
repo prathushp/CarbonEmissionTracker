@@ -1,0 +1,211 @@
+.transformed {
+  animation: shape-change 1s ease-in-out forwards; /* Apply animation */
+}
+
+.section {
+  display: inline-block;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out forwards; // Apply animation
+}
+
+.title {
+  padding-top: 30px;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: large;
+  position: relative; // Set position to relative
+  z-index: 1; // Set z-index to ensure text is in front
+}
+
+.contentContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 2rem;
+  padding: 2rem; // Add padding to the content container
+}
+
+.content {
+  max-width: 100%;
+  text-align: justify;
+  margin: 2rem; // Add margin to the text container
+}
+
+.imageContainer {
+  max-width: 100%;
+  margin: 1rem; // Add margin to the image container
+  padding: 1rem; // Add padding to the image container
+  transition: transform 0.5s ease-in-out; // Apply transition
+}
+
+.image {
+  display: inline-block;
+  max-width: 100%;
+  height: 300px;
+  width: 500px;
+  border-radius: 5px; // Adjust border radius
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23); // Adjust box shadow
+  transform-origin: center center; // Set transform origin to center
+  transition: transform 0.5s ease-in-out; // Apply transition
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.image:hover {
+  transform: scale(1.2); // Scale up on hover
+}
+
+.title:hover {
+  background: linear-gradient(to right, rgb(74, 126, 239) 50%, transparent 50%);
+  background-size: 200% 100%;
+  transition: background-position 0.5s ease; // Apply transition
+}
+
+.title:hover:hover {
+  background-position: -100% 0;
+}
+
+
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+
+  &.visible {
+    opacity: 1;
+  }
+}
+
+.contentContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.content {
+  max-width: 45%;
+  text-align: justify;
+  margin: 2rem;
+  transition: transform 0.5s ease;
+
+  &.slide-in {
+    transform: translateX(0);
+  }
+}
+
+
+
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+
+  &.visible {
+    opacity: 1;
+  }
+}
+
+.contentContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.content {
+  max-width: 45%;
+  text-align: justify;
+  margin: 2rem;
+  transition: transform 0.5s ease;
+
+  &.slide-in {
+    transform: translateX(0); /* Start from left */
+  }
+
+  &.hidden {
+    transform: translateX(-100%); /* Move content outside the viewport */
+  }
+}
+
+.imageContainer {
+  max-width: 45%;
+  margin: 1rem;
+  transition: transform 0.5s ease;
+
+  &.slide-in {
+    transform: translateX(0); /* Start from left */
+  }
+
+  &.hidden {
+    transform: translateX(100%); /* Move content outside the viewport */
+  }
+}
+
+.image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.5s ease; // Add transition for transform property
+
+  &.visible {
+    opacity: 1;
+  }
+}
+
+.contentContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.content {
+  max-width: 45%; // Adjust width as needed
+  text-align: justify;
+  margin: 2rem;
+  transition: transform 0.5s ease; // Add transition for transform property
+
+  &.slide-in {
+    transform: translateX(0); // Slide in from left
+  }
+
+  &.hidden {
+    transform: translateX(-100%); // Move content outside the viewport
+  }
+}
+
+.imageContainer {
+  max-width: 45%; // Adjust width as needed
+  margin: 1rem;
+  transition: transform 0.5s ease; // Add transition for transform property
+
+  &.slide-in {
+    transform: translateX(0); // Slide in from left
+  }
+
+  &.hidden {
+    transform: translateX(-100%); // Move content outside the viewport
+  }
+}

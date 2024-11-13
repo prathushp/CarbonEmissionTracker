@@ -1,0 +1,387 @@
+openapi: 3.1.0
+info:
+  title: Carbon Emission Tracker API
+  summary: The REST service for Carbon Emission Tracker
+  version: 'v1.0'
+servers:
+  - url: http://localhost:3001
+paths:
+  /users:
+    post:
+      summary: Create a new user (Sign Up)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserSchema'
+
+  /users/login:
+    post:
+      summary: Login a user and return an authorization token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserSigninSchema'
+            examples:
+              user:
+                value:
+                  "username": "testuser"
+                  "password": "testpassword"
+      responses:
+        '200':
+          description: Log In Successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserSigninSuccess'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceUnavailable'
+
+  /data:
+    post:
+      summary: Upload new data related to carbon emission
+      tags:
+        - Data
+      operationId: uploadData
+      requestBody:
+        description: The emission data to be uploaded
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserData'
+      responses:
+        '200':
+          description: Successfully uploaded the emission data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success200'
+        '401':
+          description: Unauthorized access
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+  /admin:
+    post:
+      summary: Create a new admin (Sign Up)
+      tags:
+        - Admin
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserSchema'
+  /admin/login:
+    post:
+      summary: Login a admin and return an authorization token
+      tags:
+        - Admin
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserSigninSchema'
+            examples:
+              user:
+                value:
+                  "username": "testuser"
+                  "password": "testpassword"
+      responses:
+        '200':
+          description: Log In Successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserSigninSuccess'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceUnavailable'
+  /admin/events:
+    post:
+      summary: Create and post a new event
+      tags:
+        - Admin
+      operationId: createEvent
+      requestBody:
+        description: The event data to be created
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Postevent'
+      responses:
+        '200':
+          description: Event Creation Successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success200'
+        '401':
+          description: Unauthorized access
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+  /events/{eventId}/register:
+    post:
+      summary: Register user for the chosen event
+      tags:
+        - Events
+      operationId: registerEvent
+      parameters:
+        - name: eventId
+          in: path
+          description: Event ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Registered events Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success200'
+        '401':
+          description: Registered events unauthorized access
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+        '404':
+          description: Event not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundEvent'
+  /payment:
+    post:
+      summary: Online Donation Payment
+      tags:
+        - Donation
+      operationId: onlineDonation
+      requestBody:
+        description: Payment Amount
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Payment'
+      responses:
+        '200':
+          description: Donation successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success200'
+        '401':
+          description: Unauthorized access
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+        '402':
+          description: Payment required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentFailed'
+
+
+components:
+  schemas:
+    PaymentFailed:
+      type: object
+      properties:
+        code:
+          type: string
+          examples:
+            - Payment Failed
+        message:
+          type: string
+          examples:
+            - Couldn't process payment, please try again
+    Payment:
+      type: object
+      properties:
+        amount:
+          type: number
+          format: float
+          examples:
+            - 50.0
+            - 100.0
+    Postevent:
+      type: object
+      properties:
+        title:
+          type: string
+          example: "Climate Change Seminar"
+        description:
+          type: string
+          example: "A seminar discussing the effects of climate change"
+        date:
+          type: string
+          format: date-time
+          example: "2022-04-25T18:25:43-05:00"
+    Success200:
+      type: object
+      properties:
+        code:
+          type: string
+          examples:
+            - Success 200
+        message:
+          type: string
+          examples:
+            - Successfully uploaded the emission data.
+            - Event Created Successfully
+            - Event Sign up Successfully
+          description: "success 200"
+    UserData:
+      type: object
+      properties:
+        emissionData:
+          type: string
+          example: "Car, 20 miles"
+    UserPostData:
+      type: object
+      properties:
+        emissionData:
+          type: string
+          example: "Successfully uploaded the user data"
+    UserSchema:
+      type: object
+      properties:
+        username:
+          type: string
+          examples:
+            - Sample Username
+        password:
+          type: string
+          examples:
+            - Sample password
+    UserSigninSchema:
+      type: object
+      properties:
+        username:
+          type: string
+          example: "testuser"
+        password:
+          type: string
+          example: "testpassword"
+    UserSigninSuccess:
+      type: object
+      properties:
+        token:
+          type: string
+          examples:
+            - Sign in Successful
+          description: Authorization token
+    BadRequest:
+      type: object
+      properties:
+        code:
+          type: string
+          examples:
+            - Bad Request
+        message:
+          type: string
+          examples:
+            - Bad Request can't load user sign in
+    Unauthorized:
+      type: object
+      properties:
+        code:
+          type: string
+          examples:
+            - Unauthorized
+        message:
+          type: string
+          examples:
+            - Unauthorized user sign in request
+            - Unauthorized User submission
+            - Unauthorized admin submission
+    NotFound:
+      type: object
+      properties:
+        code:
+          type: string
+          examples:
+            - 404 Not Found
+        message:
+          type: string
+          examples:
+            - 404 Not Found bad request
+            - 404 Event not found
+    NotFoundEvent:
+      type: object
+      properties:
+        code:
+          type: string
+          examples:
+            - 404 Not Found
+        message:
+          type: string
+          examples:
+            - 404 Event not found
+    ServiceUnavailable:
+      type: object
+      properties:
+        code:
+          type: string
+          examples:
+            - 503 ServiceUnavailable
+        message:
+          type: string
+          examples:
+            - Request Service Currently Unavailable
